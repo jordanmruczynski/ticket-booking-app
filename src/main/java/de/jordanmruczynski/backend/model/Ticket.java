@@ -3,6 +3,8 @@ package de.jordanmruczynski.backend.model;
 import de.jordanmruczynski.backend.model.ticketshandler.TicketType;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "tickets")
 public class Ticket {
@@ -11,32 +13,42 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="reservation_id", nullable=false)
+    @ManyToOne//(fetch = FetchType.LAZY)
+    //@JoinColumn(name="reservation_id")
     private Reservation reservation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seat_id", nullable = false)
+    @ManyToOne//(fetch = FetchType.LAZY)
+  //  @JoinColumn(name = "seat_id")
     private Seat seat;
+
+    @ManyToOne
+    private Screening screening;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TicketType ticketType;
 
+
     public Ticket() {
     }
 
-    public Ticket(Integer id, Reservation reservation, Seat seat, TicketType ticketType) {
+    public Ticket(Integer id, Reservation reservation, Seat seat, Screening screening, TicketType ticketType) {
         this.id = id;
         this.reservation = reservation;
         this.seat = seat;
+        this.screening = screening;
         this.ticketType = ticketType;
     }
 
-    public Ticket(Reservation reservation, Seat seat, TicketType ticketType) {
+    public Ticket(Reservation reservation, Seat seat, Screening screening, TicketType ticketType) {
         this.reservation = reservation;
         this.seat = seat;
+        this.screening = screening;
         this.ticketType = ticketType;
+    }
+
+    public BigDecimal getPrice() {
+        return ticketType.getPrice();
     }
 
     public Integer getId() {
@@ -69,5 +81,13 @@ public class Ticket {
 
     public void setTicketType(TicketType ticketType) {
         this.ticketType = ticketType;
+    }
+
+    public Screening getScreening() {
+        return screening;
+    }
+
+    public void setScreening(Screening screening) {
+        this.screening = screening;
     }
 }
