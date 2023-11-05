@@ -10,8 +10,8 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "screening_room_id", nullable = false)
+    @ManyToOne//(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "screening_room_id", nullable = false)
     private ScreeningRoom screeningRoom;
 
     @Column(nullable = false)
@@ -20,26 +20,24 @@ public class Seat {
     @Column(nullable = false)
     private Integer number;
 
-    @Column(nullable = false)
-    private Boolean isAvailable = true;
+    //@Column(nullable = false)
+   //private Boolean isAvailable = true;
 
 
     public Seat() {
     }
 
-    public Seat(Integer id, ScreeningRoom screeningRoom, String row, Integer number, Boolean isAvailable) {
+    public Seat(Integer id, ScreeningRoom screeningRoom, String row, Integer number) {
         this.id = id;
         this.screeningRoom = screeningRoom;
         this.row = row;
         this.number = number;
-        this.isAvailable = isAvailable;
     }
 
-    public Seat(ScreeningRoom screeningRoom, String row, Integer number, Boolean isAvailable) {
+    public Seat(ScreeningRoom screeningRoom, String row, Integer number) {
         this.screeningRoom = screeningRoom;
         this.row = row;
         this.number = number;
-        this.isAvailable = isAvailable;
     }
 
     public Integer getId() {
@@ -74,11 +72,4 @@ public class Seat {
         this.number = number;
     }
 
-    public Boolean getAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(Boolean available) {
-        isAvailable = available;
-    }
 }

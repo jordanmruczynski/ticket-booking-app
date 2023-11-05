@@ -26,22 +26,27 @@ public class Movie {
     @Column(nullable = false)
     private Double rating;
 
+    @Column(nullable = false)
+    private Integer durationTime;
+
     public Movie() {
     }
 
-    public Movie(Integer id, String title, String description, String genre, Double rating) {
+    public Movie(Integer id, String title, String description, String genre, Double rating, Integer durationTime) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.genre = genre;
         this.rating = rating;
+        this.durationTime = durationTime;
     }
 
-    public Movie(String title, String description, String genre, Double rating) {
+    public Movie(String title, String description, String genre, Double rating, Integer durationTime) {
         this.title = title;
         this.description = description;
         this.genre = genre;
         this.rating = rating;
+        this.durationTime = durationTime;
     }
 
     public Integer getId() {
@@ -83,4 +88,14 @@ public class Movie {
     public void setRating(Double rating) {
         this.rating = rating;
     }
+
+    public Integer getDurationTime() {
+        return durationTime;
+    }
+
+    public void setDurationTime(Integer durationTime) {
+        this.durationTime = durationTime;
+    }
+
+
 }

@@ -12,31 +12,31 @@ public class Screening {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "screening_room_id", nullable = false)
     private ScreeningRoom screeningRoom;
 
     @Column(nullable = false)
-    private LocalDateTime screeningTime;
+    private LocalDateTime screeningStartTime;
 
     public Screening() {
     }
 
-    public Screening(Integer id, Movie movie, ScreeningRoom screeningRoom, LocalDateTime screeningTime) {
+    public Screening(Integer id, Movie movie, ScreeningRoom screeningRoom, LocalDateTime screeningStartTime) {
         this.id = id;
         this.movie = movie;
         this.screeningRoom = screeningRoom;
-        this.screeningTime = screeningTime;
+        this.screeningStartTime = screeningStartTime;
     }
 
-    public Screening(Movie movie, ScreeningRoom screeningRoom, LocalDateTime screeningTime) {
+    public Screening(Movie movie, ScreeningRoom screeningRoom, LocalDateTime screeningStartTime) {
         this.movie = movie;
         this.screeningRoom = screeningRoom;
-        this.screeningTime = screeningTime;
+        this.screeningStartTime = screeningStartTime;
     }
 
     public Movie getMovie() {
@@ -55,12 +55,12 @@ public class Screening {
         this.screeningRoom = screeningRoom;
     }
 
-    public LocalDateTime getScreeningTime() {
-        return screeningTime;
+    public LocalDateTime getScreeningStartTime() {
+        return screeningStartTime;
     }
 
-    public void setScreeningTime(LocalDateTime screeningTime) {
-        this.screeningTime = screeningTime;
+    public void setScreeningStartTime(LocalDateTime screeningTime) {
+        this.screeningStartTime = screeningTime;
     }
 
     public void setId(Integer id) {
@@ -70,6 +70,8 @@ public class Screening {
     public Integer getId() {
         return id;
     }
+
+
 
 
 }

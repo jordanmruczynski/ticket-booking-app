@@ -14,21 +14,16 @@ public class ScreeningRoom {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "screeningRoom")
-    private Set<Seat> seats;
-
     public ScreeningRoom() {
     }
 
-    public ScreeningRoom(Integer id, String name, Set<Seat> seats) {
+    public ScreeningRoom(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.seats = seats;
     }
 
-    public ScreeningRoom(String name, Set<Seat> seats) {
+    public ScreeningRoom(String name) {
         this.name = name;
-        this.seats = seats;
     }
 
     public Integer getId() {
@@ -47,11 +42,4 @@ public class ScreeningRoom {
         this.name = name;
     }
 
-    public Set<Seat> getSeats() {
-        return seats;
-    }
-
-    public void setSeats(Set<Seat> seats) {
-        this.seats = seats;
-    }
 }
