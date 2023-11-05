@@ -29,12 +29,10 @@ public class ScreeningController {
         Screening screening = screeningService.getScreeningById(screeningId);
         List<Seat> availableSeats = seatService.getAvailableSeatsByScreening(screening);
 
-        // Tworzenie listy dostępnych miejsc jako lista rekordów SeatDto
         List<SeatDto> seatsDto = availableSeats.stream()
                 .map(seat -> new SeatDto(seat.getRow(), seat.getNumber()))
                 .collect(Collectors.toList());
 
-        // Utworzenie rekordu ScreeningRoomAvailabilityDto
         ScreeningRoomAvailabilityDto dto = new ScreeningRoomAvailabilityDto(
                 screening.getScreeningRoom().getName(),
                 seatsDto

@@ -6,13 +6,14 @@ import de.jordanmruczynski.backend.repository.ScreeningRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ScreeningService {
+public class ScreeningService implements IScreeningService {
     private final ScreeningRepository screeningRepository;
 
     public ScreeningService(ScreeningRepository screeningRepository) {
         this.screeningRepository = screeningRepository;
     }
 
+    @Override
     public Screening getScreeningById(Integer id) {
         return screeningRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Screening not found"));

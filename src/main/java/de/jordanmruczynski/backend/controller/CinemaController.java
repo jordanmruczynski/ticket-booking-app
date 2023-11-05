@@ -33,15 +33,4 @@ public class CinemaController {
             LocalDateTime end) {
         return ResponseEntity.ok(cinemaService.getAllScreenings(start, end));
     }
-
-//    @RequestMapping(method = RequestMethod.GET, value = "/screenings")
-//    public ResponseEntity<ScreeningDTO> getScreening(@RequestParam("id") Integer id) {
-//          return ResponseEntity.ok(cinemaService.getScreening(id));
-//    }
-//
-//    @RequestMapping(method = RequestMethod.POST, value = "/reservations")
-//    public ResponseEntity<Reservation> createReservation(@RequestBody @Valid ReservationRequest reservationRequest) {
-//        cinemaService.createReservation(reservationRequest);
-//        return ResponseEntity.ok().build();
-//    }
 }

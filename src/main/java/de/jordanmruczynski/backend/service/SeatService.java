@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class SeatService {
+public class SeatService implements ISeatService{
     private final SeatRepository seatRepository;
     private final TicketRepository ticketRepository;
 
@@ -21,15 +21,13 @@ public class SeatService {
         this.ticketRepository = ticketRepository;
     }
 
+    @Override
     public List<Seat> getAvailableSeatsByScreening(Screening screening) {
-        // Pobierz wszystkie miejsca w sali
         List<Seat> seats = seatRepository.findAllByScreeningRoom(screening.getScreeningRoom());
 
-        // Pobierz zajęte miejsca na podstawie biletów
         List<Ticket> tickets = ticketRepository.findAllByScreening(screening);
         Set<Seat> takenSeats = tickets.stream().map(Ticket::getSeat).collect(Collectors.toSet());
 
-        // Zwróć tylko dostępne miejsca
         return seats.stream().filter(seat -> !takenSeats.contains(seat)).collect(Collectors.toList());
     }
 }
