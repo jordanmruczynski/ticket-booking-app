@@ -183,6 +183,18 @@ echo -e "\n"
 ## UML Database diagram
 ![image](https://github.com/jordanmruczynski/ticket-booking-app/assets/50798031/0bcd071c-9648-4b7b-88e1-7985a35281fa)
 
+## Additional assumptions 
+1. I have additionally made an option to make the seat reservation, when trying to reserve seat 1 and 3, check if seat 2 is reserved. If it is, the validation allows the reservation of seats 1 and 3, despite the gap between them. (I was inspired by the Helios cinema network - helios.pl)
+2. The application is covered with unit and integration tests, I also tested it in 2E2 form with Postman. It remains to complete the tests of the last service.
+3. Ticket prices are defined as constant values in TicketType ENUM, it could be done with a database, in order to introduce some business marketing strategies regarding prices.
+4. I skipped the rest of the requests, such as adding movies, deleting, updates, seats or other things, in order to reduce the working time, I made the necessary queries from the Business scenario use case.
+
+
+
+
+
+
+
 
 
 
