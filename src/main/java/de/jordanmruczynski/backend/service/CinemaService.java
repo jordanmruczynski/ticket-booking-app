@@ -10,6 +10,7 @@ import de.jordanmruczynski.backend.model.Seat;
 import de.jordanmruczynski.backend.model.Ticket;
 import de.jordanmruczynski.backend.model.dto.*;
 import de.jordanmruczynski.backend.repository.*;
+import de.jordanmruczynski.backend.service.interfaces.ICinemaService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -24,14 +25,12 @@ import java.util.stream.Collectors;
 public class CinemaService implements ICinemaService {
 
     private final ScreeningRepository screeningRepository;
-    private final ScreeningRoomRepository screeningRoomRepository;
     private final ReservationRepository reservationRepository;
     private final SeatRepository seatRepository;
     private final TicketRepository ticketRepository;
 
-    public CinemaService(ScreeningRepository screeningRepository, ScreeningRoomRepository screeningRoomRepository, ReservationRepository reservationRepository, SeatRepository seatRepository, TicketRepository ticketRepository) {
+    public CinemaService(ScreeningRepository screeningRepository, ReservationRepository reservationRepository, SeatRepository seatRepository, TicketRepository ticketRepository) {
         this.screeningRepository = screeningRepository;
-        this.screeningRoomRepository = screeningRoomRepository;
         this.reservationRepository = reservationRepository;
         this.seatRepository = seatRepository;
         this.ticketRepository = ticketRepository;

@@ -5,6 +5,7 @@ import de.jordanmruczynski.backend.model.Seat;
 import de.jordanmruczynski.backend.model.Ticket;
 import de.jordanmruczynski.backend.repository.SeatRepository;
 import de.jordanmruczynski.backend.repository.TicketRepository;
+import de.jordanmruczynski.backend.service.interfaces.ISeatService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class SeatService implements ISeatService{
+public class SeatService implements ISeatService {
     private final SeatRepository seatRepository;
     private final TicketRepository ticketRepository;
 

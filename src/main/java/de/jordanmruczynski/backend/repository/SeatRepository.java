@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, Integer> {
-    //List<Seat> findAllByScreeningRoomAndIsAvailable(ScreeningRoom screeningRoom, boolean isAvailable);
 
     List<Seat> findAllByScreeningRoom(ScreeningRoom screeningRoom);
 
