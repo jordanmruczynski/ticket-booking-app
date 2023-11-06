@@ -1,4 +1,4 @@
-package de.jordanmruczynski.backend.service;
+package de.jordanmruczynski.backend.service.interfaces;
 
 import de.jordanmruczynski.backend.model.Screening;
 
