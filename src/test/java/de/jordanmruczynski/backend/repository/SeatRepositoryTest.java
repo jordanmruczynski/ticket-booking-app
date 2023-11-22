@@ -4,9 +4,11 @@ import de.jordanmruczynski.backend.AbstractContainers;
 import de.jordanmruczynski.backend.model.ScreeningRoom;
 import de.jordanmruczynski.backend.model.Seat;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,9 +23,10 @@ class SeatRepositoryTest extends AbstractContainers {
     private ScreeningRoomRepository screeningRoomRepository;
 
     @Test
+    @DirtiesContext
     void itShouldGetSeatByRowAndNumber() {
         // Given
-        ScreeningRoom screeningRoom = new ScreeningRoom("A");
+        ScreeningRoom screeningRoom = new ScreeningRoom("Room A");
         screeningRoomRepository.save(screeningRoom);
 
         String row = "I";
@@ -39,14 +42,15 @@ class SeatRepositoryTest extends AbstractContainers {
     }
 
     @Test
+    @DirtiesContext
     void itShouldGetAllSeatsByScreeningRoom() {
         // Given
-        ScreeningRoom screeningRoom = new ScreeningRoom("A");
+        ScreeningRoom screeningRoom = new ScreeningRoom("Room A");
         screeningRoomRepository.save(screeningRoom);
 
         Seat seat1 = new Seat(screeningRoom, "I", 1);
         Seat seat2 = new Seat(screeningRoom, "I", 2);
-        Seat seat3 = new Seat(screeningRoom, "II", 3);
+        Seat seat3 = new Seat(screeningRoom, "I", 3);
         seatRepository.save(seat1);
         seatRepository.save(seat2);
         seatRepository.save(seat3);

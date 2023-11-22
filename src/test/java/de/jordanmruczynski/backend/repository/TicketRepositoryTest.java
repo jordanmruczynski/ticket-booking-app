@@ -4,9 +4,11 @@ import de.jordanmruczynski.backend.AbstractContainers;
 import de.jordanmruczynski.backend.model.*;
 import de.jordanmruczynski.backend.model.ticketshandler.TicketType;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -29,6 +31,7 @@ class TicketRepositoryTest extends AbstractContainers {
     private SeatRepository seatRepository;
 
     @Test
+    @DirtiesContext
     void itShouldGetAllTicketsByScreening() {
         // Given
         Movie movie = new Movie( "TestTitle", "TestDescription", "TestGenre", 8.5, 120);
@@ -52,6 +55,7 @@ class TicketRepositoryTest extends AbstractContainers {
     }
 
     @Test
+    @DirtiesContext
     void itShouldGetAllReservedSeatsByScreening() {
         // Given
         Movie movie = new Movie( "TestTitle", "TestDescription", "TestGenre", 8.5, 120);

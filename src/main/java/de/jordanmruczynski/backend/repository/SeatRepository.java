@@ -13,4 +13,6 @@ public interface SeatRepository extends JpaRepository<Seat, Integer> {
     List<Seat> findAllByScreeningRoom(ScreeningRoom screeningRoom);
 
     Seat findByRowAndNumber(String row, Integer number);
+
+
 }

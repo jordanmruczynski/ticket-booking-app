@@ -5,9 +5,11 @@ import de.jordanmruczynski.backend.model.Movie;
 import de.jordanmruczynski.backend.model.Screening;
 import de.jordanmruczynski.backend.model.ScreeningRoom;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,6 +28,7 @@ class ScreeningRepositoryTest extends AbstractContainers {
     private ScreeningRoomRepository screeningRoomRepository;
 
     @Test
+    @DirtiesContext
     void itShouldReturnAllScreeningsBetweenTimeInterval() {
         // Given
         Movie movie = new Movie( "TestTitle", "TestDescription", "TestGenre", 8.5, 120);
