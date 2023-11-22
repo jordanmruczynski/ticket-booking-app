@@ -20,12 +20,13 @@ public class Reservation {
 
     @Column(nullable = false)
     @Size(min = 3, message = "Name must be at least 3 characters long")
-    @Pattern(regexp = "^[A-Z][a-ząćęłńóśźż]+", message = "Name must start with a capital letter and only contain letters")
+    @Pattern(regexp = "^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]*", message = "Name must start with a capital letter and only contain letters")
     private String name;
 
     @Column(nullable = false)
     @Size(min = 3, message = "Surname must be at least 3 characters long")
-    @Pattern(regexp = "^[A-Z][a-ząćęłńóśźż]+(-[A-Z][a-ząćęłńóśźż]+)?$", message = "Surname must start with a capital letter and only contain letters")
+    @Pattern(regexp = "^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]*(-[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]*)?$", message = "Surname must start with a capital letter and can contain a hyphen for compound surnames")
+
     private String surname;
 
     @Column(nullable = false)
