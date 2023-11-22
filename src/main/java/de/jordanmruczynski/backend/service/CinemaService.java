@@ -49,11 +49,11 @@ public class CinemaService implements ICinemaService {
         final Map<String, List<LocalDateTime>> screeningsMap = screenings.stream()
                 .collect(Collectors.groupingBy(
                         screening -> screening.getMovie().getTitle(),
+                        TreeMap::new,
                         Collectors.mapping(Screening::getScreeningStartTime, Collectors.toList())
                 ));
 
         return screeningsMap.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
                 .map(entry -> new MovieScreeningsDTO(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
     }
@@ -100,8 +100,12 @@ public class CinemaService implements ICinemaService {
         List<Ticket> tickets = new ArrayList<>();
         BigDecimal totalPrice = BigDecimal.ZERO;
         for (TicketRequest ticketRequest : request.tickets()) {
-            Seat seat = seatRepository.findById(ticketRequest.seatId())
-                    .orElseThrow(() -> new EntityNotFoundException("Seat not found"));
+            Seat seat = selectedSeats.stream()
+                    .filter(selectedSeat -> selectedSeat.getId().equals(ticketRequest.seatId()))
+                    .findFirst()
+                    .orElseThrow(() -> new ResourceNotFoundException("Seat not found"));
+//            Seat seat = seatRepository.findById(ticketRequest.seatId())
+//                    .orElseThrow(() -> new EntityNotFoundException("Seat not found"));
 
             Ticket ticket = new Ticket();
             ticket.setSeat(seat);
@@ -116,10 +120,6 @@ public class CinemaService implements ICinemaService {
         reservation.setTickets(new HashSet<>(tickets));
         reservation.setTotalPrice(totalPrice);
         reservationRepository.save(reservation);
-
-        for (Ticket ticket : tickets) {
-            ticketRepository.save(ticket);
-        }
 
         return new ReservationResponse(reservation.getId(), totalPrice, reservation.getExpirationTime());
     }
